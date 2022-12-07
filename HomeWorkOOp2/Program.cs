@@ -6,30 +6,27 @@ namespace HomeWorkOOp2
     {
         static void Main(string[] args)
         {
-            string? userInputPositionX = null;
-            string? userInputPositionY = null;
-            string? userInputChar = null;
-            int integerUserInputX = 0;
-            int integerUserInputY = 0;
+            int userInputPositionX = 0;
+            int userInputPositionY = 0;
             char charPlayerInput = '@';
             Renderer renderer = new Renderer();
 
-            DefinitionPlayerPositions(userInputPositionX, userInputPositionY, userInputChar, ref integerUserInputX, ref integerUserInputY, ref charPlayerInput);
+            DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY, ref charPlayerInput);
 
-            Player player = new Player(integerUserInputX, integerUserInputY, charPlayerInput);
+            Player player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
 
             Console.Clear();
             renderer.DrawPlayer(player.PlayerLocationX, player.PlayerLocationY, player.PlayerSign);
         }
 
-        static void DefinitionPlayerPositions(string userInputPositionX, string userInputPositionY, string userInputChar, ref int integerUserInputX, ref int integerUserInputY, ref char charPlayerInput)
+        static void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
         {
             Console.WriteLine("Введите позицию по X");
-            userInputPositionX = Console.ReadLine();
+            bool userInputX = int.TryParse(Console.ReadLine(), out userInputPositionX);
 
-            if (int.TryParse(userInputPositionX, out integerUserInputX))
+            if (userInputX)
             {
-                Console.WriteLine("Позиция Х: " + integerUserInputX);
+                Console.WriteLine("Позиция Х: " + userInputPositionX);
             }
             else
             {
@@ -39,11 +36,11 @@ namespace HomeWorkOOp2
             }
 
             Console.WriteLine("Введите позицию по Y");
-            userInputPositionY = Console.ReadLine();
+            bool userInputY = int.TryParse(Console.ReadLine(), out userInputPositionY);
 
-            if (int.TryParse(userInputPositionY, out integerUserInputY))
+            if (userInputX)
             {
-                Console.WriteLine("Позиция Х: " + integerUserInputY);
+                Console.WriteLine("Позиция Х: " + userInputPositionY);
             }
             else
             {
@@ -53,11 +50,11 @@ namespace HomeWorkOOp2
             }
 
             Console.WriteLine("Введите символ отображения игрока: ");
-            userInputChar = Console.ReadLine();
+            bool userInputCh = char.TryParse(Console.ReadLine(), out charPlayerInput);
 
-            if(char.TryParse(userInputChar, out charPlayerInput))
+            if (userInputCh)
             {
-                Console.WriteLine("Введен символ:" + userInputChar);
+                Console.WriteLine("Введен символ:" + charPlayerInput);
             }
             else
             {
