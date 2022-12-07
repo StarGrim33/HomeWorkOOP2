@@ -10,12 +10,20 @@ namespace HomeWorkOOp2
             int userInputPositionY = 0;
             Renderer renderer = new Renderer();
 
-            renderer.DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY);
+            DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY);
 
             Player player = new Player(userInputPositionX, userInputPositionY);
 
             Console.Clear();
             renderer.DrawPlayer(player.PlayerPositionX, player.PlayerPositionY);
+        }
+
+        static void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY)
+        {
+            Console.WriteLine("Введите позицию по X");
+            userInputPositionX = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите позицию по Y");
+            userInputPositionY = Convert.ToInt32(Console.ReadLine());
         }
     }
 
@@ -33,14 +41,6 @@ namespace HomeWorkOOp2
 
     class Renderer
     {
-        public void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY)
-        {
-            Console.WriteLine("Введите позицию по X");
-            userInputPositionX = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите позицию по Y");
-            userInputPositionY = Convert.ToInt32(Console.ReadLine());
-        }
-
         public void DrawPlayer(int playerPositionX, int playerPositionY, char playerSymbol = '$')
         {
             Console.SetCursorPosition(playerPositionX, playerPositionY);
