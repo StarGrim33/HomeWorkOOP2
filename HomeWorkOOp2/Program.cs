@@ -6,12 +6,11 @@ namespace HomeWorkOOp2
     {
         static void Main(string[] args)
         {
+            int userInputPositionX = 0;
+            int userInputPositionY = 0;
             Renderer renderer = new Renderer();
 
-            Console.WriteLine("Введите позицию по X");
-            int userInputPositionX = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите позицию по Y");
-            int userInputPositionY = Convert.ToInt32(Console.ReadLine());
+            renderer.DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY);
 
             Player player = new Player(userInputPositionX, userInputPositionY);
 
@@ -34,9 +33,17 @@ namespace HomeWorkOOp2
 
     class Renderer
     {
-        public void DrawPlayer(int x, int y, char playerSymbol = '$')
+        public void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY)
         {
-            Console.SetCursorPosition(x, y);
+            Console.WriteLine("Введите позицию по X");
+            userInputPositionX = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите позицию по Y");
+            userInputPositionY = Convert.ToInt32(Console.ReadLine());
+        }
+
+        public void DrawPlayer(int playerPositionX, int playerPositionY, char playerSymbol = '$')
+        {
+            Console.SetCursorPosition(playerPositionX, playerPositionY);
             Console.Write(playerSymbol);
         }
     }
