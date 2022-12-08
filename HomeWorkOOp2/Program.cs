@@ -16,7 +16,7 @@ namespace HomeWorkOOp2
             Player player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
 
             Console.Clear();
-            renderer.DrawPlayer(player.PlayerLocationX, player.PlayerLocationY, player.PlayerSign);
+            renderer.DrawPlayer(player.LocationX, player.LocationY, player.Sign);
         }
 
         static void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
@@ -26,7 +26,7 @@ namespace HomeWorkOOp2
 
             if (userInputX)
             {
-                Console.WriteLine("Позиция Х: " + userInputPositionX);
+                Console.WriteLine("Позиция по Х: " + userInputPositionX);
             }
             else
             {
@@ -37,17 +37,6 @@ namespace HomeWorkOOp2
 
             Console.WriteLine("Введите позицию по Y");
             bool userInputY = int.TryParse(Console.ReadLine(), out userInputPositionY);
-
-            if (userInputX)
-            {
-                Console.WriteLine("Позиция Х: " + userInputPositionY);
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод, попробуйте заново, введя число");
-                Console.ReadKey();
-                return;
-            }
 
             Console.WriteLine("Введите символ отображения игрока: ");
             bool userInputCh = char.TryParse(Console.ReadLine(), out charPlayerInput);
@@ -67,16 +56,16 @@ namespace HomeWorkOOp2
 
     class Player
     {
-        public Player(int playerPositionX, int playerPositionY, char playerSymbol)
+        public Player(int positionX, int positionY, char symbol)
         {
-            PlayerLocationX = playerPositionX;
-            PlayerLocationY = playerPositionY;
-            PlayerSign = playerSymbol;
+            LocationX = positionX;
+            LocationY = positionY;
+            Sign = symbol;
         }
 
-        public int PlayerLocationX { get; private set; }
-        public int PlayerLocationY { get; private set; }
-        public char PlayerSign { get; private set; }
+        public int LocationX { get; private set; }
+        public int LocationY { get; private set; }
+        public char Sign { get; private set; }
     }
 
     class Renderer
