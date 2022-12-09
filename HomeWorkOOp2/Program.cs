@@ -22,9 +22,9 @@ namespace HomeWorkOOp2
         static void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
         {
             Console.WriteLine("Введите позицию по X");
-            bool userInputX = int.TryParse(Console.ReadLine(), out userInputPositionX);
+            bool isUserInputX = int.TryParse(Console.ReadLine(), out userInputPositionX);
 
-            if (userInputX)
+            if (isUserInputX)
             {
                 Console.WriteLine("Позиция по Х: " + userInputPositionX);
             }
@@ -36,12 +36,12 @@ namespace HomeWorkOOp2
             }
 
             Console.WriteLine("Введите позицию по Y");
-            bool userInputY = int.TryParse(Console.ReadLine(), out userInputPositionY);
+            bool isUserInputY = int.TryParse(Console.ReadLine(), out userInputPositionY);
 
             Console.WriteLine("Введите символ отображения игрока: ");
-            bool userInputCh = char.TryParse(Console.ReadLine(), out charPlayerInput);
+            bool isUserInputCh = char.TryParse(Console.ReadLine(), out charPlayerInput);
 
-            if (userInputCh)
+            if (isUserInputCh)
             {
                 Console.WriteLine("Введен символ:" + charPlayerInput);
             }
