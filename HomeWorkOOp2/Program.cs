@@ -10,16 +10,33 @@ namespace HomeWorkOOp2
             int userInputPositionY = 0;
             char charPlayerInput = '@';
             Renderer renderer = new Renderer();
-
-            DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY, ref charPlayerInput);
-
             Player player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
+
+            player.DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY, ref charPlayerInput);
+
+            player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
 
             Console.Clear();
             renderer.DrawPlayer(player.LocationX, player.LocationY, player.Sign);
         }
 
-        static void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
+        
+    }
+
+    class Player
+    {
+        public Player(int positionX, int positionY, char symbol)
+        {
+            LocationX = positionX;
+            LocationY = positionY;
+            Sign = symbol;
+        }
+
+        public int LocationX { get; private set; }
+        public int LocationY { get; private set; }
+        public char Sign { get; private set; }
+
+        public void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
         {
             Console.WriteLine("Введите позицию по X");
             bool isUserInputX = int.TryParse(Console.ReadLine(), out userInputPositionX);
@@ -52,20 +69,6 @@ namespace HomeWorkOOp2
                 return;
             }
         }
-    }
-
-    class Player
-    {
-        public Player(int positionX, int positionY, char symbol)
-        {
-            LocationX = positionX;
-            LocationY = positionY;
-            Sign = symbol;
-        }
-
-        public int LocationX { get; private set; }
-        public int LocationY { get; private set; }
-        public char Sign { get; private set; }
     }
 
     class Renderer
