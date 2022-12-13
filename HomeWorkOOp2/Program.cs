@@ -6,21 +6,41 @@ namespace HomeWorkOOp2
     {
         static void Main(string[] args)
         {
-            int userInputPositionX = 0;
-            int userInputPositionY = 0;
-            char charPlayerInput = '@';
-            Renderer renderer = new Renderer();
-            Player player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
+            Renderer renderer = new();
 
-            player.DefinitionPlayerPositions(ref userInputPositionX, ref userInputPositionY, ref charPlayerInput);
+            Console.WriteLine("Введите позицию по X");
+            bool isUserInputX = int.TryParse(Console.ReadLine(), out int userInputPositionX);
 
-            player = new Player(userInputPositionX, userInputPositionY, charPlayerInput);
+            Console.WriteLine("Введите позицию по Y");
+            bool isUserInputY = int.TryParse(Console.ReadLine(), out int userInputPositionY);
 
-            Console.Clear();
-            renderer.DrawPlayer(player.LocationX, player.LocationY, player.Sign);
+            if (isUserInputX && isUserInputY)
+            {
+                Console.WriteLine($"Позиция по Х: {userInputPositionX} \nПозиция по Y: {userInputPositionY}");
+            }
+            else
+            {
+                Console.WriteLine("Некорректный ввод позиций, попробуйте заново, введя числа");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.WriteLine("Введите символ отображения игрока: ");
+            bool isUserInputCh = char.TryParse(Console.ReadLine(), out char charPlayerInput);
+
+            if (isUserInputCh)
+            {
+                Console.WriteLine("Введен символ:" + charPlayerInput);
+            }
+            else
+            {
+                Console.WriteLine("Некорректный ввод символа, попробуйте заново");
+                Console.ReadKey();
+                return;
+            }
+
+            renderer.DrawPlayer(userInputPositionX, userInputPositionY, charPlayerInput);
         }
-
-        
     }
 
     class Player
@@ -35,46 +55,13 @@ namespace HomeWorkOOp2
         public int LocationX { get; private set; }
         public int LocationY { get; private set; }
         public char Sign { get; private set; }
-
-        public void DefinitionPlayerPositions(ref int userInputPositionX, ref int userInputPositionY, ref char charPlayerInput)
-        {
-            Console.WriteLine("Введите позицию по X");
-            bool isUserInputX = int.TryParse(Console.ReadLine(), out userInputPositionX);
-
-            if (isUserInputX)
-            {
-                Console.WriteLine("Позиция по Х: " + userInputPositionX);
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод, попробуйте заново, введя число");
-                Console.ReadKey();
-                return;
-            }
-
-            Console.WriteLine("Введите позицию по Y");
-            bool isUserInputY = int.TryParse(Console.ReadLine(), out userInputPositionY);
-
-            Console.WriteLine("Введите символ отображения игрока: ");
-            bool isUserInputCh = char.TryParse(Console.ReadLine(), out charPlayerInput);
-
-            if (isUserInputCh)
-            {
-                Console.WriteLine("Введен символ:" + charPlayerInput);
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод, попробуйте заново");
-                Console.ReadKey();
-                return;
-            }
-        }
     }
 
     class Renderer
     {
         public void DrawPlayer(int playerPositionX, int playerPositionY, char playerSymbol)
         {
+            Console.Clear();
             Console.SetCursorPosition(playerPositionX, playerPositionY);
             Console.Write(playerSymbol);
         }
