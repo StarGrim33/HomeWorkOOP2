@@ -16,7 +16,7 @@ namespace HomeWorkOOp2
 
             if (isUserInputX && isUserInputY)
             {
-                Console.WriteLine($"Позиция по Х: {userInputPositionX} \nПозиция по Y: {userInputPositionY}");
+                Console.WriteLine($"Позиция по Х: {userInputPositionX}, позиция по Y: {userInputPositionY}");
             }
             else
             {
