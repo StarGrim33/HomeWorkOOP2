@@ -6,40 +6,14 @@ namespace HomeWorkOOp2
     {
         static void Main(string[] args)
         {
+            int startPositionX = 2;
+            int startPositionY = 2;
+            char defaultSymbol = '$';
+
             Renderer renderer = new();
+            Player player = new(startPositionX, startPositionY, defaultSymbol);
 
-            Console.WriteLine("Введите позицию по X");
-            bool isUserInputX = int.TryParse(Console.ReadLine(), out int userInputPositionX);
-
-            Console.WriteLine("Введите позицию по Y");
-            bool isUserInputY = int.TryParse(Console.ReadLine(), out int userInputPositionY);
-
-            if (isUserInputX && isUserInputY)
-            {
-                Console.WriteLine($"Позиция по Х: {userInputPositionX}, позиция по Y: {userInputPositionY}");
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод позиций, попробуйте заново, введя числа");
-                Console.ReadKey();
-                return;
-            }
-
-            Console.WriteLine("Введите символ отображения игрока: ");
-            bool isUserInputCh = char.TryParse(Console.ReadLine(), out char charPlayerInput);
-
-            if (isUserInputCh)
-            {
-                Console.WriteLine("Введен символ:" + charPlayerInput);
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод символа, попробуйте заново");
-                Console.ReadKey();
-                return;
-            }
-
-            renderer.DrawPlayer(userInputPositionX, userInputPositionY, charPlayerInput);
+            renderer.DrawPlayer(player);
         }
     }
 
@@ -59,11 +33,11 @@ namespace HomeWorkOOp2
 
     class Renderer
     {
-        public void DrawPlayer(int playerPositionX, int playerPositionY, char playerSymbol)
+        public void DrawPlayer(Player player)
         {
             Console.Clear();
-            Console.SetCursorPosition(playerPositionX, playerPositionY);
-            Console.Write(playerSymbol);
+            Console.SetCursorPosition(player.LocationX, player.LocationY);
+            Console.Write(player.Sign);
         }
     }
 }
